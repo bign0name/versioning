@@ -14,7 +14,7 @@
   - `2030b.2.3.7`: Second variant of 2030’s releases, major version 2, minor 3, patch 7.
 
 ## Future Considerations
-- Custom `git` integration with versioning support.
 - CLI tool for `git` tags:
   - Print latest version.
   - Copy year and variant (e.g., `2030a.`) to clipboard for quick use.
+- Custom `git` integration with versioning support.
