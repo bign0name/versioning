@@ -21,4 +21,4 @@
 - **Usage**: Run `version` in a Git repository.
 
 ## Future Considerations
-- Custom `git` integration with versioning support.
+- Custom `Git` integration with versioning support.
