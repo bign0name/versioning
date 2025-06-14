@@ -1,0 +1,17 @@
+# Rust build artifacts
+target/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS-specific files
+.DS_Store
+
+# Build and log files
+/build/
+/dist/
+*.log
