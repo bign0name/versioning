@@ -26,7 +26,7 @@
   - `2026a.s.0.0.0-p`: Stable phase, variant stream, no breaking changes, public beta status.
 
 ## Notes
-- Recommended to use Git tags for versioning. Use `git tag -a` for annotated tags with the version as the tag name (e.g., `git tag -a v2026.s.1.0.0`).
+- Recommended to use lightweight Git tags for versioning (e.g., `git tag v2026.s.1.0.0`). The commit message provides sufficient context; tag messages are redundant.
 
 ## `version` CLI
 - Rust-based tool for managing Git tags in the versioning format.
@@ -44,3 +44,4 @@
   - `version new [phase] [--variant X]`: Transition to a new phase or variant, handling the `0.0.0` reset.
   - `version suffix [--add b|p] [--remove]`: Manage `-b`/`-p` suffixes for beta-to-stable promotion workflows.
 - A small LLM instructions file for providing context on this versioning scheme to LLMs unfamiliar with it (e.g., for use in system prompts or project documentation).
+- Auto-generated annotated tag messages via the git integration (e.g., changelog from commits since last tag), making annotated tags worthwhile without manual redundancy.

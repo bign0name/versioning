@@ -72,7 +72,7 @@ fn print_help() {
   2026a.s.0.0.0-p    Stable, variant stream, public beta status.
 
   \x1b[1mNotes\x1b[0m
-  - Use git tag -a for annotated tags (e.g., git tag -a v2026.s.1.0.0)."
+  - Use lightweight git tags for versioning (e.g., git tag v2026.s.1.0.0)." 
     );
 }
 
