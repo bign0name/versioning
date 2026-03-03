@@ -44,4 +44,4 @@
   - `version new [phase] [--variant X]`: Transition to a new phase or variant, handling the `0.0.0` reset.
   - `version suffix [--add b|p] [--remove]`: Manage `-b`/`-p` suffixes for beta-to-stable promotion workflows.
 - A small LLM instructions file for providing context on this versioning scheme to LLMs unfamiliar with it (e.g., for use in system prompts or project documentation).
-- Auto-generated annotated tag messages via the git integration (e.g., changelog from commits since last tag), making annotated tags worthwhile without manual redundancy.
+- Auto-generated annotated tag messages via the git integration (e.g., changelog from commits since last tag), making annotated tags worthwhile without manual redundancy. Tags should also auto-push.
