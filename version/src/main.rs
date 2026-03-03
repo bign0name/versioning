@@ -1,3 +1,4 @@
+use std::env;
 use std::process::Command;
 use std::str;
 use arboard::Clipboard;
@@ -18,6 +19,13 @@ struct Version {
 }
 
 fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    if args.len() > 1 && (args[1] == "help" || args[1] == "--help" || args[1] == "-h") {
+        print_help();
+        return;
+    }
+
     match get_latest_version() {
         Ok((version, prefix)) => {
             // Print version in bright yellow (\x1b[93m) and reset color (\x1b[0m)
@@ -32,6 +40,40 @@ fn main() {
         }
         Err(e) => eprintln!("Error: {}", e),
     }
+}
+
+fn print_help() {
+    println!(
+"\x1b[1mYear-Phase Versioning with Variant and Stability Suffixes\x1b[0m
+
+  Format: YEAR[VARIANT].PHASE.MAJOR.MINOR.PATCH[-b|-p]
+
+  \x1b[1mYEAR\x1b[0m       Release year (e.g., 2026), omitted for internal phase, starts in June (flexible guideline).
+  \x1b[1mVARIANT\x1b[0m    Optional letter (a, b, c, ...) for distinct release streams in a year.
+  \x1b[1mPHASE\x1b[0m      i (internal), b (beta), p (public beta), s (stable).
+  \x1b[1mMAJOR\x1b[0m      Breaking changes since last release (0 means none). Resets MINOR and PATCH to 0.
+  \x1b[1mMINOR\x1b[0m      New features or improvements. Resets PATCH to 0.
+  \x1b[1mPATCH\x1b[0m      Bug fixes or minor updates.
+  \x1b[1mSuffix\x1b[0m     Optional -b (beta) or -p (public beta) for non-stable releases.
+
+  \x1b[1mPhase Rules\x1b[0m
+  - Internal phase: Omits YEAR, uses PHASE=i, no -b or -p (e.g., i.0.32.102).
+  - Other phases: Include YEAR, use PHASE=b, p, or s.
+  - Beta phase omits -b/-p. Public beta uses -b (not -p). Stable uses -b or -p.
+  - Can skip beta or public beta, but beta testing is recommended.
+  - Version resets to 0.0.0 when entering a new phase or variant.
+  - A commit can have multiple versions to mark a beta's transition to stable.
+
+  \x1b[1mExamples\x1b[0m
+  i.0.32.102         Internal, no breaking changes, 32 minor, 102 patches.
+  2026.b.0.1.4       Beta, no breaking changes, 1 minor, 4 patches.
+  2026.p.1.12.4-b    Public beta, 1 breaking, 12 minor, 4 patches, beta status.
+  2026.s.2.3.4       Stable, 2 breaking, 3 minor, 4 patches.
+  2026a.s.0.0.0-p    Stable, variant stream, public beta status.
+
+  \x1b[1mNotes\x1b[0m
+  - Use git tag -a for annotated tags (e.g., git tag -a v2026.s.1.0.0)."
+    );
 }
 
 fn get_latest_version() -> Result<(String, Option<String>), String> {
