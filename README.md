@@ -27,6 +27,7 @@
 
 ## Notes
 - Recommended to use lightweight Git tags for versioning (e.g., `git tag v2026.s.1.0.0`). The commit message provides sufficient context; tag messages are redundant.
+- Git tags are not pushed by default. Use `git push --tags` to push them to the remote repository.
 
 ## `version` CLI
 - Rust-based tool for managing Git tags in the versioning format.
