@@ -38,7 +38,10 @@ fn main() {
                 println!("\x1b[93m{}\x1b[0m", version);
             }
         }
-        Err(e) => eprintln!("Error: {}", e),
+        Err(e) => {
+            eprintln!("Error: {}\n", e);
+            print_help();
+        }
     }
 }
 
